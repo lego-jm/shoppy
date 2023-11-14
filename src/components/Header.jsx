@@ -1,0 +1,48 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import { BiSearch } from "react-icons/bi";
+import { CiShoppingCart } from "react-icons/ci";
+import { BsHeart } from "react-icons/bs";
+import { IoPersonOutline } from "react-icons/io5";
+import NavBar from "./NavBar";
+
+export default function Navigation() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  return (
+    <div className="flex flex-col">
+      <div className="flex justify-between py-5">
+        <Link to="/" className="w-2/12">
+          <img src="/svg/logo/brandi-logo.svg" alt="" />
+        </Link>
+        <div className="flex gap-x-16">
+          <form onSubmit={handleSubmit} className="flex items-center">
+            <div className="relative">
+              <input
+                className="w-80 py-2 border-b-2 outline-none border-black text-lg"
+                type="text"
+              />
+              <button className="text-3xl absolute right-0 top-2">
+                <BiSearch />
+              </button>
+            </div>
+          </form>
+          <nav className="flex items-center gap-6 text-4xl">
+            <Link to="/carts">
+              <CiShoppingCart />
+            </Link>
+            <Link to="/products/new">
+              <BsHeart className="text-3xl" />
+            </Link>
+            <button>
+              <IoPersonOutline />
+            </button>
+          </nav>
+        </div>
+      </div>
+      <NavBar />
+    </div>
+  );
+}
