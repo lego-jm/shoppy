@@ -2,11 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
 import { CiShoppingCart } from "react-icons/ci";
-import { BsHeart } from "react-icons/bs";
+import { BsHeart, BsPencilFill } from "react-icons/bs";
 import { IoPersonOutline } from "react-icons/io5";
 import NavBar from "./NavBar";
+import { useAuthContext } from "../context/AuthContext";
 
 export default function Navigation() {
+  const { user, login, logout } = useAuthContext();
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -33,12 +35,34 @@ export default function Navigation() {
             <Link to="/carts">
               <CiShoppingCart />
             </Link>
-            <Link to="/products/new">
+            <Link to="/">
               <BsHeart className="text-3xl" />
             </Link>
-            <button>
-              <IoPersonOutline />
-            </button>
+            {user && (
+              <button className="relative" onClick={() => logout()}>
+                <IoPersonOutline />
+                <span className="absolute -top-1 -right-3 text-xs text-white bg-point-color rounded-lg px-1">
+                  ON
+                </span>
+              </button>
+            )}
+
+            {!user && (
+              <button
+                className="relative"
+                onClick={() => login().then((user) => user)}
+              >
+                <IoPersonOutline />
+                <span className="absolute -top-1 -right-3 text-xs text-white bg-gray-500 rounded-lg px-1">
+                  OFF
+                </span>
+              </button>
+            )}
+            {user?.isAdmin && (
+              <Link to="/products/new">
+                <BsPencilFill className="text-2xl" />
+              </Link>
+            )}
           </nav>
         </div>
       </div>
