@@ -1,8 +1,11 @@
 import React from "react";
 import CartCount from "./CartCount";
+import { IoClose } from "react-icons/io5";
+import { removeItem } from "../api/firebase";
+import { useAuthContext } from "../context/AuthContext";
 
 export default function CartItem({ product }) {
-  const sumPrice = product.price * product.count;
+  const { user } = useAuthContext();
 
   return (
     <li className="flex justify-between border-b">
@@ -13,6 +16,10 @@ export default function CartItem({ product }) {
           <h3 className="font-bold">{product.title}</h3>
           <p className="text-base font-bold">{`${product.price.toLocaleString()}원`}</p>
         </div>
+        <IoClose
+          className="text-3xl cursor-pointer"
+          onClick={() => removeItem(user.uid, product.id)}
+        />
       </div>
       <div className="basis-4/12 p-5 border-x">
         <p className="border-b pb-3 text-sm">
@@ -21,7 +28,9 @@ export default function CartItem({ product }) {
         <CartCount product={product} />
       </div>
       <div className="flex justify-center items-center basis-2/12 p-5">
-        <p className="text-xl font-bold">{`${sumPrice.toLocaleString()}원`}</p>
+        <p className="text-xl font-bold">{`${(
+          product.price * product.count
+        ).toLocaleString()}원`}</p>
       </div>
     </li>
   );

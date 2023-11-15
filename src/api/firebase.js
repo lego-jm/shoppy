@@ -6,7 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { get, getDatabase, ref, set } from "firebase/database";
+import { get, getDatabase, ref, remove, set } from "firebase/database";
 import { v4 as uuid } from "uuid";
 
 const firebaseConfig = {
@@ -79,7 +79,6 @@ export async function getAllProducts() {
 }
 
 export async function addOrUpdateCart(uid, item) {
-  console.log(item);
   set(ref(database, `carts/${uid}/${item.id}`), {
     ...item,
   });
@@ -95,4 +94,8 @@ export async function getCarts(uid) {
     .catch((error) => {
       console.error(error);
     });
+}
+
+export async function removeItem(uid, itemId) {
+  remove(ref(database, `carts/${uid}/${itemId}`));
 }

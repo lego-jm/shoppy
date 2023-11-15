@@ -6,12 +6,17 @@ import { BsHeart, BsPencilFill } from "react-icons/bs";
 import { IoPersonOutline } from "react-icons/io5";
 import NavBar from "./NavBar";
 import { useAuthContext } from "../context/AuthContext";
+import { useQuery } from "react-query";
+import { getCarts } from "../api/firebase";
 
 export default function Navigation() {
   const { user, login, logout } = useAuthContext();
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+  const { isLoading, error, data } = useQuery(["cart"], () =>
+    getCarts(user.uid)
+  );
 
   return (
     <div className="flex flex-col">
@@ -32,8 +37,11 @@ export default function Navigation() {
             </div>
           </form>
           <nav className="flex items-center gap-6 text-4xl">
-            <Link to="/carts">
+            <Link to="/carts" className="relative">
               <CiShoppingCart />
+              <span className="absolute flex justify-center w-3 -top-1 -right-1 text-xxs leading-4 text-white bg-point-color rounded-lg px-2">
+                {data?.length}
+              </span>
             </Link>
             <Link to="/">
               <BsHeart className="text-3xl" />
