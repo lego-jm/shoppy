@@ -41,7 +41,7 @@ export default function Navigation() {
             {user && (
               <button className="relative" onClick={() => logout()}>
                 <IoPersonOutline />
-                <span className="absolute -top-1 -right-3 text-xs text-white bg-point-color rounded-lg px-1">
+                <span className="absolute -top-1 -right-1 text-xxs leading-4 text-white bg-point-color rounded-lg px-1">
                   ON
                 </span>
               </button>
@@ -53,7 +53,7 @@ export default function Navigation() {
                 onClick={() => login().then((user) => user)}
               >
                 <IoPersonOutline />
-                <span className="absolute -top-1 -right-3 text-xs text-white bg-gray-500 rounded-lg px-1">
+                <span className="absolute -top-1 -right-1 text-xxs leading-4 text-white bg-gray-500 rounded-lg px-1">
                   OFF
                 </span>
               </button>

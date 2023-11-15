@@ -6,6 +6,9 @@ module.exports = {
       backgroundColor: {
         "point-color": "#F84F63",
       },
+      fontSize: {
+        xxs: "0.55rem",
+      },
     },
   },
   plugins: [],
