@@ -59,8 +59,7 @@ async function getAdminUid(user) {
 
 export async function addProduct(product, url) {
   const uid = uuid();
-
-  set(ref(database, "products/" + uid), {
+  set(ref(database, `products/${uid}`), {
     ...product,
     price: parseInt(product.price),
     imageUrl: url,
@@ -69,6 +68,25 @@ export async function addProduct(product, url) {
 
 export async function getAllProducts() {
   return get(ref(database, `products/`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return Object.values(snapshot.val());
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+export async function addOrUpdateCart(uid, item) {
+  console.log(item);
+  set(ref(database, `carts/${uid}/${item.id}`), {
+    ...item,
+  });
+}
+
+export async function getCarts(uid) {
+  return get(ref(database, `carts/${uid}`))
     .then((snapshot) => {
       if (snapshot.exists()) {
         return Object.values(snapshot.val());

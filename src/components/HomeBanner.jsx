@@ -16,18 +16,15 @@ const urlArr = [
 export default function HomeBanner() {
   return (
     <Swiper
-      className="border-t"
       modules={[Autoplay]}
       autoplay={{ delay: 3000, disableOnInteraction: false }}
       spaceBetween={20}
       slidesPerView={1.2}
       centeredSlides={true}
       loop={true}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
     >
-      {urlArr.map((item) => (
-        <SwiperSlide>
+      {urlArr.map((item, index) => (
+        <SwiperSlide key={index}>
           <img className="w-full" src={item} alt="banner-img" />
         </SwiperSlide>
       ))}

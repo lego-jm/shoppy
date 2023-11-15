@@ -13,7 +13,7 @@ const categorys = [
 
 export default function NavBar() {
   return (
-    <nav className="w-full flex justify-between bg-white font-bold mt-3">
+    <nav className="w-full flex justify-between bg-white font-bold mt-3 border-b">
       {categorys.map((category, index) => (
         <button
           className={`p-1 ${index === 0 ? "border-b-2 border-black " : ""}`}

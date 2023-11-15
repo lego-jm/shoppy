@@ -6,7 +6,9 @@ export default function ProductCard({ product }) {
   return (
     <li
       className="cursor-pointer mb-2"
-      onClick={() => navigate(`/products/${product.id}`)}
+      onClick={() =>
+        navigate(`/products/${product.id}`, { state: { product } })
+      }
     >
       <div className="overflow-hidden">
         <img
