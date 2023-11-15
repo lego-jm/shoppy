@@ -6,7 +6,8 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { get, getDatabase, ref } from "firebase/database";
+import { get, getDatabase, ref, set } from "firebase/database";
+import { v4 as uuid } from "uuid";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -50,6 +51,28 @@ async function getAdminUid(user) {
         return { ...user, isAdmin: true };
       }
       return user;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+export async function addProduct(product, url) {
+  const uid = uuid();
+
+  set(ref(database, "products/" + uid), {
+    ...product,
+    price: parseInt(product.price),
+    imageUrl: url,
+  });
+}
+
+export async function getAllProducts() {
+  return get(ref(database, `products/`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return Object.values(snapshot.val());
+      }
     })
     .catch((error) => {
       console.error(error);
