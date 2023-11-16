@@ -15,7 +15,7 @@ export default function Navigation() {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mx-52">
       <div className="flex justify-between py-5">
         <Link to="/" className="w-2/12">
           <img src="/svg/logo/brandi-logo.svg" alt="" />

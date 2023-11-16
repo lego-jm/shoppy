@@ -16,6 +16,7 @@ const urlArr = [
 export default function HomeBanner() {
   return (
     <Swiper
+      className="relative"
       modules={[Autoplay]}
       autoplay={{ delay: 3000, disableOnInteraction: false }}
       slidesPerView={1.2}
@@ -23,8 +24,8 @@ export default function HomeBanner() {
       loop={true}
     >
       {urlArr.map((item, index) => (
-        <SwiperSlide key={index}>
-          <img className="w-full" src={item} alt="banner-img" />
+        <SwiperSlide className="relative" key={index}>
+          <img src={item} alt="banner-img" />
         </SwiperSlide>
       ))}
     </Swiper>

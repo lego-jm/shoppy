@@ -1,6 +1,6 @@
 import React from "react";
-import HomeBanner from "../components/HomeBanner";
 import Products from "../pages/Products";
+import HomeBanner from "../components/HomeBanner";
 
 export default function Home() {
   return (

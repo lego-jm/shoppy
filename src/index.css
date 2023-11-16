@@ -9,24 +9,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply flex flex-col items-center;
-}
-
-#root {
-  @apply max-w-6xl;
+  width: 100vw;
+  height: 100vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-.swiper-container {
-  position: relative;
-}
-
-.swiper-slide {
-  position: relative;
 }
 
 .swiper-slide-prev::before,
@@ -37,6 +26,6 @@ code {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* 불투명한 검은 배경 */
+  background-color: rgba(0, 0, 0, 0.6); /* 불투명한 검은 배경 */
   z-index: 1;
 }

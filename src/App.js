@@ -15,8 +15,12 @@ function App() {
       <ReactNotifications />
       <QueryClientProvider client={client}>
         <AuthContextProvider>
-          <Header />
-          <Outlet />
+          <div className="border-b">
+            <Header />
+          </div>
+          <div className="max-w-6xl mx-auto">
+            <Outlet />
+          </div>
           <Footer />
         </AuthContextProvider>
       </QueryClientProvider>
