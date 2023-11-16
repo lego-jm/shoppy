@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto">
         <nav className="flex justify-between">
           <div className="flex justify-between basis-6/12">
-            <a href="#">이용약관</a>
+            <a href="#!">이용약관</a>
             <a href="/policy" target="_blank" className="privacy">
               개인정보처리방침
             </a>
@@ -18,25 +18,17 @@ export default function Footer() {
               사업자정보확인
             </a>
             <a
-              href="https://www.brandiinc.com/recruit/"
+              href="#!"
               target="_blank"
               rel="noreferrer noopener"
               className="recruiter"
             >
               인재채용
             </a>
-            <a
-              href="https://pf.kakao.com/_pSxoZu"
-              target="_blank"
-              className="join"
-            >
+            <a href="#!" target="_blank" className="join">
               입점문의
             </a>
-            <a
-              href="http://admin.brandi.co.kr"
-              target="_blank"
-              className="admin"
-            >
+            <a href="#!" target="_blank" className="admin">
               셀러어드민
             </a>
           </div>
@@ -45,7 +37,7 @@ export default function Footer() {
               자주묻는 질문
             </a>
             <a
-              href="https://pf.kakao.com/_xexkxcxkl"
+              href="#!"
               target="_blank"
               rel="noreferrer noopener"
               className="kakao"
@@ -53,7 +45,7 @@ export default function Footer() {
               플러스친구
             </a>
             <a
-              href="https://www.facebook.com/brandiapp/"
+              href="#!"
               target="_blank"
               rel="noreferrer noopener"
               className="facebook"
@@ -61,7 +53,7 @@ export default function Footer() {
               페이스북
             </a>
             <a
-              href="https://www.instagram.com/brandi__official"
+              href="#!"
               target="_blank"
               rel="noreferrer noopener"
               className="instagram"
@@ -97,51 +89,11 @@ export default function Footer() {
                 브랜디는 통신판매중개자로서 통신판매 당사자가 아니며, 판매자가
                 등록한 상품정보 및 거래에 브랜디는 책임을 지지 않습니다.
               </p>
-              <p className="link-text">
-                <b>안전거래센터</b>
-                <a
-                  href="https://sites.google.com/brandi.co.kr/safety/%ED%99%88?authuser=0 "
-                  target="_blank"
-                >
-                  신고하기
-                </a>
-              </p>
-              <div className="markArea isms">
-                <div className="footMark"></div>
-                <div className="markInfo">
-                  <div className="markText iRange">
-                    <strong>인증범위</strong>
-                    <p>
-                      온라인 쇼핑몰 서비스 운영 (브랜디, 하이버, 플레어,
-                      서울스토어) (심사받지 않은 물리적 인프라 제외)
-                    </p>
-                  </div>
-                  <div className="markText iDue">
-                    <strong>유효기간</strong>
-                    <p>2022-12-07 ~ 2025-12-06</p>
-                  </div>
-                </div>
-              </div>
-              <div className="markArea escrow">
-                <a
-                  href="https://pg.nicepay.co.kr/issue/IssueEscrow.jsp?Mid=combran01m&amp;CoNo=2208893187"
-                  target="_blank"
-                  className="footMark"
-                ></a>
-                <div className="markInfo">
-                  <div className="markText">
-                    <p>
-                      당사는 고객님의 안전거래를 위해 관련 법률에 의거하여
-                      나이스페이먼츠의 에스크로 서비스를 적용하고 있습니다.
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
             <div className="infos-cs">
               <h2 className="tit-h1">
                 고객센터
-                <a href="tel:15666575" className="cs-tel">
+                <a href="#!" className="cs-tel">
                   1566-6575
                 </a>
               </h2>
@@ -155,7 +107,7 @@ export default function Footer() {
               </div>
               <div className="info">
                 <h3 className="tit-h2">고객문의</h3>
-                <a href="mailto:brandics@brandi.co.kr" className="cs-email">
+                <a href="#!" className="cs-email">
                   brandics@brandi.co.kr
                 </a>
               </div>
