@@ -3,7 +3,7 @@ import useCart from "../hooks/useCart";
 
 export default function CartStatus() {
   const {
-    cartQuery: { isLoading, error, data: products },
+    cartQuery: { data: products },
   } = useCart();
 
   return (
