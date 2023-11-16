@@ -2,23 +2,41 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Select from "../components/ui/Select";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { addOrUpdateCart } from "../api/firebase";
 import Button from "../components/ui/Button";
-import { useAuthContext } from "../context/AuthContext";
+import useCart from "../hooks/useCart";
+import { Store } from "react-notifications-component";
 
 export default function ProductDetail() {
-  const { user } = useAuthContext();
   const {
     state: { product },
   } = useLocation();
   const [option, setOption] = useState();
+  const { addOrUpdateItem } = useCart();
   const handleAddCart = () => {
-    addOrUpdateCart(user.uid, {
-      ...product,
-      color: option.color,
-      option: option.size,
-      count: 1,
-    });
+    addOrUpdateItem.mutate(
+      {
+        ...product,
+        color: option.color,
+        option: option.size,
+        count: 1,
+      },
+      {
+        onSuccess: () => {
+          Store.addNotification({
+            title: "",
+            message: "장바구니에 상품을 담았습니다.",
+            type: "success",
+            insert: "top-left",
+            container: "top-left",
+            animationIn: ["animate__animated animate__backInDown"],
+            animationOut: ["animate__animated animate__backOutUp"],
+            dismiss: {
+              duration: 2000,
+            },
+          });
+        },
+      }
+    );
   };
 
   return (

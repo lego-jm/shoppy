@@ -1,18 +1,13 @@
 import React from "react";
-import { useQuery } from "react-query";
-import { getAllProducts } from "../api/firebase";
 import ProductCard from "../components/ProductCard";
 import Loading from "../components/Loading";
 import ErrorPage from "../pages/ErrorPage";
+import useProducts from "../hooks/useProducts";
 
 export default function Products() {
   const {
-    isLoading,
-    error,
-    data: products,
-  } = useQuery(["products"], () => {
-    return getAllProducts();
-  });
+    productQuery: { isLoading, error, data: products },
+  } = useProducts();
 
   if (isLoading) return <Loading />;
   if (error) return <ErrorPage />;

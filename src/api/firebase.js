@@ -30,16 +30,13 @@ export async function login() {
     .catch((error) => console.error(error));
 }
 
-export async function logout() {
+export function logout() {
   signOut(auth);
 }
 
-export async function onAuthUserChanged(callback) {
+export function onAuthUserChanged(callback) {
   onAuthStateChanged(auth, async (user) => {
-    const updatedUser = user
-      ? await getAdminUid(user).then((res) => res)
-      : null;
-
+    const updatedUser = user ? await getAdminUid(user) : null;
     callback(updatedUser);
   });
 }
@@ -47,8 +44,10 @@ export async function onAuthUserChanged(callback) {
 async function getAdminUid(user) {
   return get(ref(database, `admins/`))
     .then((snapshot) => {
-      if (snapshot.exists() && snapshot.val().includes(user.uid)) {
-        return { ...user, isAdmin: true };
+      if (snapshot.exists()) {
+        const admins = snapshot.val();
+        const isAdmin = admins.includes(user.uid);
+        return { ...user, isAdmin };
       }
       return user;
     })
@@ -57,12 +56,11 @@ async function getAdminUid(user) {
     });
 }
 
-export async function addProduct(product, url) {
+export async function addProduct(product) {
   const uid = uuid();
   set(ref(database, `products/${uid}`), {
     ...product,
     price: parseInt(product.price),
-    imageUrl: url,
   });
 }
 

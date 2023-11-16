@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ErrorPage() {
   return (
-    <div className="flex flex-col justify-center items-center text-center">
+    <div className="flex flex-col justify-center items-center text-center mt-20">
       <div className="flex flex-col items-center gap-3">
         <img className="w-14 rounded-full" src="/img/brandi-logo.png" alt="" />
         <h3 className="text-xl font-bold">잠시 이용이 어려워요.</h3>

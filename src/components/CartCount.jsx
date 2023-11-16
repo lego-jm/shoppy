@@ -1,16 +1,15 @@
 import React from "react";
 import { FiMinus, FiPlus } from "react-icons/fi";
-import { addOrUpdateCart } from "../api/firebase";
-import { useAuthContext } from "../context/AuthContext";
+import useCart from "../hooks/useCart";
 
 export default function CartCount({ product }) {
-  const { user } = useAuthContext();
+  const { addOrUpdateItem } = useCart();
   const inCrement = () => {
-    addOrUpdateCart(user.uid, { ...product, count: product.count + 1 });
+    addOrUpdateItem.mutate({ ...product, count: product.count + 1 });
   };
   const deCrement = () => {
     if (product.count > 1) {
-      addOrUpdateCart(user.uid, { ...product, count: product.count - 1 });
+      addOrUpdateItem.mutate({ ...product, count: product.count - 1 });
     }
   };
 

@@ -1,11 +1,29 @@
 import React from "react";
 import CartCount from "./CartCount";
 import { IoClose } from "react-icons/io5";
-import { removeItem } from "../api/firebase";
-import { useAuthContext } from "../context/AuthContext";
+import useCart from "../hooks/useCart";
+import { Store } from "react-notifications-component";
 
 export default function CartItem({ product }) {
-  const { user } = useAuthContext();
+  const { removeCartItem } = useCart();
+  const handleRemoveItem = () => {
+    removeCartItem.mutate(product.id, {
+      onSuccess: () => {
+        Store.addNotification({
+          title: "",
+          message: "해당 상품을 장바구니에서 지웠습니다.",
+          type: "success",
+          insert: "top-left",
+          container: "top-left",
+          animationIn: ["animate__animated animate__backInDown"],
+          animationOut: ["animate__animated animate__backOutUp"],
+          dismiss: {
+            duration: 2000,
+          },
+        });
+      },
+    });
+  };
 
   return (
     <li className="flex justify-between border-b">
@@ -18,7 +36,7 @@ export default function CartItem({ product }) {
         </div>
         <IoClose
           className="text-3xl cursor-pointer"
-          onClick={() => removeItem(user.uid, product.id)}
+          onClick={handleRemoveItem}
         />
       </div>
       <div className="basis-4/12 p-5 border-x">

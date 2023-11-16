@@ -1,33 +1,39 @@
 import React, { useState } from "react";
 import Button from "../components/ui/Button";
-import { addProduct } from "../api/firebase";
 import { productImageUpload } from "../api/uploder";
 
 import { Store } from "react-notifications-component";
+import useProducts from "../hooks/useProducts";
 
 export default function NewProduct() {
   const [product, setProduct] = useState();
   const [file, setFile] = useState();
+  const { addProductQuery } = useProducts();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    Store.addNotification({
-      title: "",
-      message: "새로운 제품을 업로드 했습니다.",
-      type: "success",
-      insert: "top-left",
-      container: "top-left",
-      animationIn: ["animate__animated animate__backInDown"],
-      animationOut: ["animate__animated animate__backOutUp"],
-      dismiss: {
-        duration: 2000,
-      },
+    productImageUpload(file).then((res) => {
+      addProductQuery.mutate(
+        { ...product, imageUrl: res.url },
+        {
+          onSuccess: () => {
+            Store.addNotification({
+              title: "",
+              message: "새로운 제품을 업로드 했습니다.",
+              type: "success",
+              insert: "top-left",
+              container: "top-left",
+              animationIn: ["animate__animated animate__backInDown"],
+              animationOut: ["animate__animated animate__backOutUp"],
+              dismiss: {
+                duration: 2000,
+              },
+            });
+          },
+        }
+      );
     });
-    /* productImageUpload(file).then((res) => {
-      addProduct(product, res.url);
-      
-    }); */
   };
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -58,6 +64,14 @@ export default function NewProduct() {
             type="file"
             name="file"
             onChange={handleChange}
+          />
+          <input
+            className="w-full border-2 border-black rounded-lg p-2"
+            type="text"
+            name="company"
+            placeholder="판매처"
+            onChange={handleChange}
+            value={product?.company || ""}
           />
           <input
             className="w-full border-2 border-black rounded-lg p-2"

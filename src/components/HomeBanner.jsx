@@ -18,7 +18,6 @@ export default function HomeBanner() {
     <Swiper
       modules={[Autoplay]}
       autoplay={{ delay: 3000, disableOnInteraction: false }}
-      spaceBetween={20}
       slidesPerView={1.2}
       centeredSlides={true}
       loop={true}

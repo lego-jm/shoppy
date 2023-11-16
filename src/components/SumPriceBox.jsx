@@ -2,6 +2,7 @@ import React from "react";
 import { FaPlus } from "react-icons/fa6";
 
 export default function SumPriceBox({ products }) {
+  const DELEVERY_PRICE = 3000;
   const sumPrice = products.reduce((prev, current) => {
     return prev + current.price * current.count;
   }, 0);
@@ -16,13 +17,13 @@ export default function SumPriceBox({ products }) {
         <FaPlus className="opacity-20" />
         <div className="flex flex-col items-center">
           <span className="text-sm opacity-70">배송비</span>
-          <p className="text-xl font-bold">{`${(3000).toLocaleString()}원`}</p>
+          <p className="text-xl font-bold">{`${DELEVERY_PRICE.toLocaleString()}원`}</p>
         </div>
       </div>
       <div className="flex flex-col items-center basis-2/6 border-l p-3">
         <span className="text-sm opacity-70">총 결제금액</span>
         <p className="text-xl font-bold">{`${(
-          sumPrice + 3000
+          sumPrice + DELEVERY_PRICE
         ).toLocaleString()}원`}</p>
       </div>
     </div>
